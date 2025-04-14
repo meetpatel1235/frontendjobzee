@@ -20,7 +20,7 @@ const Login = () => {
   const [newPassword, setNewPassword] = useState("");
   const [otpVerified, setOtpVerified] = useState(false);
 
-  const BASE_URL = "http://localhost:4000"; // Change to your production URL if needed
+  const BASE_URL = "https://backend-b8mw.onrender.com"; // Change to your production URL if needed
 
   const handleLogin = async (e) => {
     e.preventDefault();
