@@ -17,46 +17,35 @@ const Login = () => {
   const BASE_URL = "https://backend-b8mw.onrender.com";
 
   const handleLogin = async (e) => {
-    e.preventDefault();
-    if (!email || !password || !role) {
-      toast.error("Please fill all fields.");
-      return;
-    }
+  e.preventDefault();
 
-    setLoading(true);
-    try {
-      const response = await axios.post(
-        `${BASE_URL}/api/v1/user/login`,
-        { email, password, role },
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
+  if (!email || !password || !role) {
+    toast.error("Please fill all fields.");
+    return;
+  }
 
-      // ✅ Save token
-      const token = response.data.token;
-      localStorage.setItem("token", token);
+  setLoading(true);
+  try {
+    const response = await axiosInstance.post("/user/login", {
+      email,
+      password,
+      role,
+    });
 
-      toast.success("Login successful!");
-      setIsAuthorized(true);
+    toast.success("Login successful!");
+    localStorage.setItem("token", response.data.token);
+    setIsAuthorized(true);
 
-      // ✅ Optional: Fetch user to verify token is valid
-      await axios.get(`${BASE_URL}/api/v1/user/getuser`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        withCredentials: true,
-      });
+    // Fetch user to confirm login success
+    await axiosInstance.get("/user/getuser");
 
-      // ✅ Navigate after successful login
-      navigate("/");
-    } catch (error) {
-      toast.error(error.response?.data?.message || "Login failed!");
-    } finally {
-      setLoading(false);
-    }
-  };
+    navigate("/");
+  } catch (error) {
+    toast.error(error.response?.data?.message || "Login failed!");
+  } finally {
+    setLoading(false);
+  }
+};
 
   if (isAuthorized) return <Navigate to="/" />;
 
