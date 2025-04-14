@@ -24,7 +24,7 @@ const JobDetails = () => {
     }
 
     axios
-      .get(`http://localhost:4000/api/v1/job/${id}`, { withCredentials: true })
+      .get(`https://backend-b8mw.onrender.com/api/v1/job/${id}`, { withCredentials: true })
       .then((res) => setJob(res.data.job))
       .catch(() => navigateTo("/notfound"))
       .finally(() => setLoading(false)); // ✅ Hide spinner when request is complete

@@ -18,7 +18,7 @@ const Register = () => {
   const { isAuthorized, setIsAuthorized } = useContext(Context);
   const [loading, setLoading] = useState(false);
 
-  const API_URL = "http://localhost:4000/api/v1/user/register";
+  const API_URL = "https://backend-b8mw.onrender.com/api/v1/user/register";
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -58,7 +58,7 @@ const Register = () => {
       formData.append("profilePic", imageUrl);
     }
 
-    const API_URL = "http://localhost:4000/api/v1/user/register";
+    const API_URL = "https://backend-b8mw.onrender.com/api/v1/user/register";
     
     console.log("Registering user with API URL:", API_URL);
     console.log("Form Data:", Object.fromEntries(formData));

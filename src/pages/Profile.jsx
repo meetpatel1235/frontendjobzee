@@ -19,7 +19,7 @@ const Profile = () => {
     }, 100);
 
     if (isAuthorized && user) {
-      axios.get("http://localhost:4000/api/v1/user/getuser", { withCredentials: true })
+      axios.get("https://backend-b8mw.onrender.com/api/v1/user/getuser", { withCredentials: true })
         .then((res) => {
           const userData = res.data.user;
           setProfile(userData);
@@ -53,7 +53,7 @@ const Profile = () => {
         email: editProfile.email,
       };
   
-      const res = axios.post("http://localhost:4000/api/v1/profile", updateData,
+      const res = axios.post("https://backend-b8mw.onrender.com/api/v1/profile", updateData,
         {
           withCredentials: true,
           headers: { "Content-Type": "application/json" },
@@ -83,7 +83,7 @@ const Profile = () => {
     formData.append("profilePic", file);
 
     try {
-      const res = await axios.post("http://localhost:4000/api/v1/user/upload-profile", formData, {
+      const res = await axios.post("https://backend-b8mw.onrender.com/api/v1/user/upload-profile", formData, {
         withCredentials: true,
         headers: { "Content-Type": "multipart/form-data" },
       });

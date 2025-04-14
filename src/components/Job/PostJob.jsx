@@ -46,7 +46,7 @@ const PostJob = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/v1/job/post",
+        "https://backend-b8mw.onrender.com/api/v1/job/post",
         formData.salaryType === "Fixed Salary"
           ? { ...formData, salaryFrom: "", salaryTo: "" }
           : { ...formData, fixedSalary: "" },
